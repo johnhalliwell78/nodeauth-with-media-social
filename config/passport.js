@@ -101,12 +101,14 @@ module.exports = function (passport) {
                 if (user) {
                     return done(null, user);
                 } else {
+                    console.log('pass ne'+ profile);
                     var newUser = new User();
 
                     newUser.facebook.id = profile.id;
                     newUser.facebook.token = token;
                     newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName; // bạn có thể log đối tượng profile để xem cấu trúc
                     newUser.facebook.email = profile.emails[0].value;
+
 
                     newUser.save(function (err) {
                         if (err) throw err;
